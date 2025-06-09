@@ -2,14 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Will You Be My Girlfriend?</title>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
   <style>
+    html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
     body {
       margin: 0;
       padding: 0;
       height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
@@ -19,6 +26,9 @@
     }
 
     #container {
+      width: 90%;
+      max-width: 400px;
+      box-sizing: border-box;
       text-align: center;
       background: rgba(255,255,255,0.8);
       padding: 2rem 3rem;
@@ -75,6 +85,15 @@
         transform: translateY(-200px) scale(1.5);
         opacity: 0;
       }
+    }
+    canvas#confetti {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
     }
   </style>
 </head>
