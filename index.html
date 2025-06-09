@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Will You Be My Girlfriend?</title>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
   <style>
     html {
       margin: 0;
@@ -86,6 +87,15 @@
         opacity: 0;
       }
     }
+    /* Pulse animation for celebration */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    #container.pulse {
+      animation: pulse 2s infinite;
+    }
     canvas#confetti {
       position: absolute;
       top: 0;
@@ -100,12 +110,27 @@
 <body>
   <div id="container">
     <h1>Hey! 😊</h1>
-    <p>Would you like to be my girlfriend?</p>
+    <p id="question"></p>
     <button class="btn yes">Yes!</button>
     <button class="btn no">No</button>
   </div>
   <canvas id="confetti"></canvas>
   <script>
+    function typeWriter(id, text, delay = 100) {
+      const element = document.getElementById(id);
+      let i = 0;
+      const timer = setInterval(() => {
+        element.textContent += text.charAt(i);
+        i++;
+        if (i === text.length) clearInterval(timer);
+      }, delay);
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      typeWriter('question', 'Would you like to be my girlfriend?');
+      // Drop gentle hearts in the background every half-second
+      setInterval(createHeart, 500);
+    });
+
     const container = document.getElementById('container');
 
     function createHeart() {
@@ -122,6 +147,14 @@
       for (let i = 0; i < 30; i++) {
         setTimeout(createHeart, i * 100);
       }
+      // Launch confetti burst
+      confetti({
+        particleCount: 200,
+        spread: 100,
+        origin: { y: 0.6 }
+      });
+      // Add subtle pulse to container
+      container.classList.add('pulse');
     }
 
     function onNo() {
@@ -130,6 +163,13 @@
 
     document.querySelector('.yes').onclick = onYes;
     document.querySelector('.no').onclick = onNo;
+
+    const noBtn = document.querySelector('.no');
+    noBtn.addEventListener('mouseenter', () => {
+      noBtn.style.position = 'absolute';
+      noBtn.style.left = Math.random() * (window.innerWidth - noBtn.clientWidth) + 'px';
+      noBtn.style.top = Math.random() * (window.innerHeight - noBtn.clientHeight) + 'px';
+    });
   </script>
 </body>
 </html>
