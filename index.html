@@ -65,6 +65,12 @@
       box-shadow: 0 6px 12px rgba(0,0,0,0.2);
     }
 
+    .btn.no {
+      position: relative;
+      z-index: 1;
+      /* transform transitions are already defined */
+    }
+
     .yes { background: #ff6b81; color: white; }
     .no  { background: #54a0ff; color: white; }
 
@@ -166,10 +172,15 @@
 
     const noBtn = document.querySelector('.no');
     noBtn.addEventListener('mouseenter', () => {
-      noBtn.style.position = 'fixed';
-      noBtn.style.zIndex = '1000';
-      noBtn.style.left = Math.random() * (window.innerWidth - noBtn.clientWidth) + 'px';
-      noBtn.style.top = Math.random() * (window.innerHeight - noBtn.clientHeight) + 'px';
+      // Move the button via transform so layout doesn't shift
+      const offsetX = (Math.random() - 0.5) * 200; // +/-100px
+      const offsetY = (Math.random() - 0.5) * 200; // +/-100px
+      noBtn.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+    });
+
+    // Reset transform when mouse leaves so it can dodge again
+    noBtn.addEventListener('mouseleave', () => {
+      noBtn.style.transform = '';
     });
   </script>
 </body>
