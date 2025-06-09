@@ -109,7 +109,7 @@
 </head>
 <body>
   <div id="container">
-    <h1>Hey! 😊</h1>
+    <h1>My Dearest Leah 😊</h1>
     <p id="question"></p>
     <button class="btn yes">Yes!</button>
     <button class="btn no">No</button>
@@ -126,7 +126,7 @@
       }, delay);
     }
     document.addEventListener('DOMContentLoaded', () => {
-      typeWriter('question', 'Would you like to be my girlfriend?');
+      typeWriter('question', 'Leah, will you be my girlfriend?');
       // Drop gentle hearts in the background every half-second
       setInterval(createHeart, 500);
     });
@@ -143,7 +143,7 @@
     }
 
     function onYes() {
-      container.innerHTML = '<h1>Yay! 💖</h1><p>I’m so happy you said yes!</p>';
+      container.innerHTML = "<h1>Leah! 💖</h1><p>You've made my heart soar. Thank you for saying yes!</p>";
       for (let i = 0; i < 30; i++) {
         setTimeout(createHeart, i * 100);
       }
@@ -158,7 +158,7 @@
     }
 
     function onNo() {
-      container.innerHTML = '<h1>Aw, maybe next time…</h1><p>Still looking forward to our next adventure!</p>';
+      container.innerHTML = "<h1>Oh, Leah…</h1><p>I'll cherish every moment and hope for our next chance.</p>";
     }
 
     document.querySelector('.yes').onclick = onYes;
