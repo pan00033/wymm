@@ -166,7 +166,8 @@
 
     const noBtn = document.querySelector('.no');
     noBtn.addEventListener('mouseenter', () => {
-      noBtn.style.position = 'absolute';
+      noBtn.style.position = 'fixed';
+      noBtn.style.zIndex = '1000';
       noBtn.style.left = Math.random() * (window.innerWidth - noBtn.clientWidth) + 'px';
       noBtn.style.top = Math.random() * (window.innerHeight - noBtn.clientHeight) + 'px';
     });
